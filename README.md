@@ -43,3 +43,25 @@ C1 to C8 = Principal Components 1,2,3,4, and 8 from GWAS
 
 I've also included a few additional files that are often used. A candidate CNV list, which list the genomic positions of selected regions for exlcusion or inclusion (**hg18_implicated_CNV.txt**), and a gene list (**hg18_refGene_plink.txt**) to map CNVs to specific genes.
 
+
+Interactive R scripts
+============
+
+These scripts are meant to run interactively in the R environment, and contain documentation for submitting longer running jobs on the command line. Do not run these scripts from the command line until you've optimized them yourself for automation. Each script has an overview of what the script does and what files / programs are needed. All scripts assume you are running from the same directory with the cnv files, and will sometimes create subdirectories for output files.  
+
+**CNV_data_descriptives.R**  
+This script looks at the phenotype data for potential issues, errors, or outliers in data quality, and provides a few graphical examples for looking at the distribution of CNVs.  
+Main steps:  
+ - Checking case/control balance
+ - Checking CNV burden by dataset / platform
+ - Checking CNV burden by PC
+
+
+
+
+
+
+
+
+
+
