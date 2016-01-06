@@ -50,11 +50,22 @@ Interactive R scripts
 These scripts are meant to run interactively in the R environment, and contain documentation for submitting longer running jobs on the command line. Do not run these scripts from the command line until you've optimized them yourself for automation. Each script has an overview of what the script does and what files / programs are needed. All scripts assume you are running from the same directory with the cnv files, and will sometimes create subdirectories for output files.  
 
 **CNV_data_descriptives.R**  
-This script looks at the phenotype data for potential issues, errors, or outliers in data quality, and provides a few graphical examples for looking at the distribution of CNVs.  
-Main steps:  
+This script looks at the phenotype data for potential issues, errors, or outliers in data quality, and provides a few graphical examples for looking at the distribution of CNVs.
+
+Main steps:
  - Checking case/control balance
  - Checking CNV burden by dataset / platform
  - Checking CNV burden by PC
+
+**CNV_burden_level_association.R**
+This script has steps to run a detailed CNV burden analysis, look at the results, and make a forest plot of the results.
+
+Main steps:
+ - Running CNV burden script
+ - specify parameters to view and graph
+ - show main results
+ - Forest plot
+
 
 
 
