@@ -14,7 +14,7 @@ As currently stands, the CNV calls and additional genomic location files use NCB
 For the principal components, I've included 5 PCs that showed association to small CNV (< 100 kb) burden in previous analysis, however the relevant PCs used will likely vary from dataset to dataset. Of note, there may be other relevant covariates for each study, and this example is not necessarily a guide of which covariates are, or are not, important in any given analysis framework.
 
 As these files closely follow the format of PLINK CNV files, and it is best to look at the PLINK documentation for full details:
-pngu.mgh.harvard.edu/~purcell/plink/cnv.shtml
+*pngu.mgh.harvard.edu/~purcell/plink/cnv.shtml*
 
 **CNV_data.cnv** - CNV calls  
 FID = Family ID (unique identifier across all datasets)  
