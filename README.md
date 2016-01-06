@@ -2,16 +2,16 @@
 Author: Daniel P. Howrigan  
 Start Date: January 2016
 
-Welcome! This repository is a collection of R scripts used to analyze array-based CNV. The primary themes are getting CNV descriptive statistics, outlier detection, CNV burden, and individual locus association. I've added a small example dataset that mimics a number of proprties and issues related to large-scale CNV analysis. If all works well, the scripts provided should be able to run on the example dataset, and should give the user enough background to pursue further, more refined analyses, on their own data. 
+Welcome! This repository is a collection of R scripts used to analyze array-based CNV. The primary aim is to get you familiar with looking at CNV descriptive statistics for potential issues, and running CNV burden and individual locus association. I've added a small example dataset that mimics a number of proprties and issues related to large-scale CNV analysis. If all works well, the scripts provided should be able to run on the example dataset, and should give you some background to pursue more detailed and refined analyses on your own CNV data. 
 
 Example Dataset
 ============
 
-The example dataset compromises 2000 individuals from 4 separate datasets. I have anonymized the IDs to prevent any re-identification with the selected samples. The data is a formatted version of CNV calls that allow for CNV analysis in PLINK, and the phenotypes (.phe) have a selected set of principle components that were calculated from GWAS. For data management purposes outside of this example, it is critically important that the sample identifiers for array CNV data and their resepective principal component scores from array GWAS data have been properly matched. 
+The example dataset contains 2000 individuals from 4 separate datasets. I have anonymized the IDs to prevent any re-identification with the randomly selected samples. The data is a formatted version of CNV calls that allow for CNV analysis in PLINK, and the phenotypes (.phe) have a selected set of principle components that were calculated from GWAS. **For data management purposes outside of this example, it is critically important that the sample identifiers for array CNV data and their resepective principal component scores from array GWAS data have been properly matched** 
 
 For the principal components, I've included 5 PCs that showed association to small CNV (< 100 kb) burden in previous analysis, however the relevant PCs used will likely vary from dataset to dataset. Of note, there may be other relevant covariates for each study, and this example is not necessarily a guide of which covariates are, or are not, important in any given analysis framework.
 
-As these files closely follow the format of PLINK CNV files, it is best to look at the PLINK documentation for full details:
+As these files closely follow the format of PLINK CNV files, and it is best to look at the PLINK documentation for full details:
 pngu.mgh.harvard.edu/~purcell/plink/cnv.shtml
 
 **CNV_data.cnv** - CNV calls  
@@ -57,7 +57,7 @@ Main steps:
  - Checking CNV burden by dataset / platform
  - Checking CNV burden by PC
 
-**CNV_burden_level_association.R**
+**CNV_burden_level_association.R**  
 This script has steps to run a detailed CNV burden analysis, look at the results, and make a forest plot of the results.
 
 Main steps:
@@ -66,13 +66,41 @@ Main steps:
  - show main results
  - Forest plot
 
+**CNV_SNP_level_association.R**  
+This script has steps to run CNV association analysis, generate residual phenotypes, get genome-wide correction estimates, and make UCSC .bed and .bedGraph files.
+
+Main steps:
+ - Case/control association: CNV_CaseCon_assoc.R
+ - Residual phenotype generation
+ - Residual phenotype association: CNV_assoc_Quantitative.R
+ - Family-wise error correction
+ - Manhattan Plot
+ - UCSC .bed and .bedGraph files
 
 
+Stand alone R scripts
+============
+
+These scripts are meant to run as submitted jobs, and usually have a set of arguments that are passed to the script. Each script has an overview of what the script does and what files / programs are needed. All scripts assume you are running from the same directory with the cnv files, and will sometimes create subdirectories for output files. As written in the interactive R scripts, these were run on the LSF cluster at the Broad Institute, and you will need to make adjustments to the submission prompts for your specific server. FOr the exmaple dataset, most of these scripts *should* run on your own computer, however larger numbers of permutations could take a while. 
 
 
+**CNV_burden_platform.R**  
+This is the most intensive of the scripts used here, and it is worth looking at the documentation to understand what is going on. This script runs CNV burden analyses on a variety of datasets, CNV types, and CNV property filters. Once you are familiar with the filters, you can add/substract additional filters that may be worth investigating.
 
+Main steps:
+ - CNV burden filters
+ -  CNV burden loop
+ -  Applying PLINK filters
+ -  Reading PLINK burden results
+ -  CNV burden analysis in R
+ -  Combining all results together and writing to file
 
+**CNV_assoc_CaseCon.R**  
+A short script to run PLINK CNV association on case/control data.
 
+**CNV_assoc_Quantitative.R**  
+Another short script to run PLINK CNV association on quantitative data, which is used when including covariates for analysis.   
 
-
+**Manhattan.R**
+A short script to help create Manhattan plots of the results
 
