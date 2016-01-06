@@ -104,6 +104,6 @@ A short script to run PLINK CNV association on case/control data.
 **CNV_assoc_Quantitative.R**  
 Another short script to run PLINK CNV association on quantitative data, which is used when including covariates for analysis.   
 
-**Manhattan.R**
+**Manhattan.R**  
 A short script to help create Manhattan plots of the results
 
