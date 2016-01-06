@@ -1,6 +1,5 @@
 # array_CNV_analysis
-Author: Daniel P. Howrigan
-
+Author: Daniel P. Howrigan  
 Start Date: January 2016
 
 Welcome! This repository is a collection of R scripts used to analyze array-based CNV. The primary themes are getting CNV descriptive statistics, outlier detection, CNV burden, and individual locus association. I've added a small example dataset that mimics a number of proprties and issues related to large-scale CNV analysis. If all works well, the scripts provided should be able to run on the example dataset, and should give the user enough background to pursue further, more refined analyses, on their own data. 
