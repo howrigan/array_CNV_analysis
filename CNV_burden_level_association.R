@@ -86,7 +86,7 @@ bn <- read.table('CNV_burden_platform.burden',h=T,stringsAsFactors=F)
 phe <- read.table('CNV_data.phe',h=T,stringsAsFactors=F)
 
 ## graphing directory (where will my graphs be printed?)
-graph_dir <- '/home/unix/howrigan/public_html/pgc_cnv/github'
+graph_dir <- '/home/unix/howrigan/private_html/pgc_cnv/github'
 
 
 ## dataset information sorted by dataset size
@@ -122,8 +122,8 @@ for (d in 1:length(freq)) {
 ## Reduce burden file to specific parameters
 bn0 <- bn[bn$CNV_type == type[a] &
     bn$region_set == region[b] &
-    bn$CNV_freq == freq[c] &
-    bn$CNV_size==size[d],]
+    bn$CNV_size==size[c] & 
+    bn$CNV_freq == freq[d],]
 
 options(width=200)
 
@@ -143,6 +143,8 @@ print(bn0[,c('data_set','region_set','CNV_type','CNV_freq','NSEG_NONGENIC_rate',
 cat('\n')
 print(bn0[,c('data_set','region_set','CNV_type','CNV_freq','KB_NONGENIC_rate','KB_NONGENIC_cas_rate','KB_NONGENIC_con_rate','KB_NONGENIC_glm_OR','KB_NONGENIC_glm_pval')])
 cat('\n')
+
+cat(paste0('a=',a,'; b=',b,'; c=',c,'; d=',d,'\n'))
 
 } ## END of d LooP
 } ## END of c LooP
@@ -184,6 +186,10 @@ lowerCI <- eval(parse(text=paste(sep='','bn1$',burden[e],'_glm_lowerCI')))
 upperCI <- eval(parse(text=paste(sep='','bn1$',burden[e],'_glm_upperCI')))
 pval <- eval(parse(text=paste(sep='','bn1$',burden[e],'_glm_pval')))
 plot_titles <- paste(c('Platform','Cases','Controls',burden_names[e],'pval','OR'),sep='')
+
+## removing infinite CIs
+lowerCI[lowerCI==-Inf] <- NA ; lowerCI[lowerCI==Inf] <- NA
+upperCI[upperCI==-Inf] <- NA ; upperCI[upperCI==Inf] <- NA
 
 
 ## ===== GRAPH
