@@ -110,7 +110,6 @@ size <- c('Allsize','100kb','100-200kb','200-500kb','500kb')
 freq <- c('Allfreq','singleton','2-10','11plus')
 
 
-
 ## PART 3: Quick view of results
 
 for (a in 1:length(type)) {
@@ -161,6 +160,7 @@ burden <- c('NSEG','KB','COUNT','NGENE','NSEG_GENIC','KB_GENIC','NSEG_NONGENIC',
 burden_names <- c('CNV','KB','Genes','Genes','CNV','KB','CNV','KB')
 
 # a=1 ; b=1 ; c=1 ; d=1; e=7
+# a=1; b=1; c=2; d=4; e=8
 
 for (a in 1:length(type)) {
 for (b in 1:length(region)) {
@@ -189,7 +189,9 @@ plot_titles <- paste(c('Platform','Cases','Controls',burden_names[e],'pval','OR'
 
 ## removing infinite CIs
 lowerCI[lowerCI==-Inf] <- NA ; lowerCI[lowerCI==Inf] <- NA
+lowerCI[upperCI==-Inf] <- NA ; lowerCI[upperCI==Inf] <- NA
 upperCI[upperCI==-Inf] <- NA ; upperCI[upperCI==Inf] <- NA
+upperCI[lowerCI==-Inf] <- NA ; upperCI[lowerCI==Inf] <- NA
 
 
 ## ===== GRAPH
@@ -273,7 +275,7 @@ text(x=xpts1,
 
 dev.off()
 
-print(paste('a=',a,' b=',b,' c=',c,' d=',d,' e=',e,sep=''))
+print(paste('a=',a,'; b=',b,'; c=',c,'; d=',d,'; e=',e,sep=''))
 
 } ## END of a LooP
 } ## END of b LooP
