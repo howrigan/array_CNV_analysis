@@ -209,6 +209,9 @@ xlims <- c(min(lowerCI,na.rm=T)-(0.1*max(upperCI,na.rm=T)),
            max(upperCI,na.rm=T)+(0.05*max(upperCI,na.rm=T)))
 xrange <- xlims[2]-xlims[1]
 
+## override soft plotting axis in event of non-numerical CIs
+if (xrange==-Inf) { xlims <- c(0,2); xrange <- xlims[2]-xlims[1] }
+
 #plot the betas & SE(betas)
 plot(OR,seq(1,nrow(bn1),1),axes=F,xlab='Odds Ratio (95% CI)',ylab='',col=bn1$colors,main='',pch=20,cex=0.5,xlim=xlims)
 
